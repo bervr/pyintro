@@ -10,5 +10,5 @@ time_of_year = year_dict.get(month_number)
 print(time_of_year)
 for season in year_list:
     if season.count(month_number):
-        time_of_year=season[3]
+        time_of_year = season[3]
 print(f'Ах, {time_of_year}!')
