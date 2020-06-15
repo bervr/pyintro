@@ -30,16 +30,16 @@ while continue_key == 'y':
         goods_name = input('Введите название товара ')
         goods_price = input('Введите цену товара ')
         goods_quantity = input('Введите количество товара ')
-        goods_units = input('Введите еденицы измерения товара ')
+        goods_units = input('Введите единицы измерения товара ')
         confirm = input(f'Все верно? Добавить новый товар номер {goods_counter}, {goods_name}, цена {goods_price}, '
                         f'количество {goods_quantity} {goods_units}? y/n ')
         if confirm == 'y':
             goods_tuple = (goods_counter,{})
             goods_tuple[1].update({'name': goods_name, 'price': goods_price, 'quantity': goods_quantity, 'units': goods_units})
             result_list.append(goods_tuple)
-            print(goods_tuple)
-            print(goods_dict)
-            print(result_list)
+            # print(goods_tuple)
+            # print(goods_dict)
+            # print(result_list)
         else:
             goods_counter -= 1
             continue
