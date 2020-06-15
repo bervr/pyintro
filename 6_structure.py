@@ -17,3 +17,31 @@
 # “количество”: [5, 2, 7],
 # “ед”: [“шт.”]
 # }
+continue_key = 'y'
+result_list = []
+goods_counter = 0
+while continue_key == 'y':
+    continue_key = (input('Добавить товар? y/n '))
+    if continue_key == 'n':
+        break
+    else:
+        goods_dict = {}
+        goods_counter += 1
+        goods_name = input('Введите название товара ')
+        goods_price = input('Введите цену товара ')
+        goods_quantity = input('Введите количество товара ')
+        goods_units = input('Введите еденицы измерения товара ')
+        confirm = input(f'Все верно? Добавить новый товар номер {goods_counter}, {goods_name}, цена {goods_price}, '
+                        f'количество {goods_quantity} {goods_units}? y/n ')
+        if confirm == 'y':
+            goods_tuple = (goods_counter,{})
+            goods_tuple[1].update({'name': goods_name, 'price': goods_price, 'quantity': goods_quantity, 'units': goods_units})
+            result_list.append(goods_tuple)
+            print(goods_tuple)
+            print(goods_dict)
+            print(result_list)
+        else:
+            goods_counter -= 1
+            continue
+
+
