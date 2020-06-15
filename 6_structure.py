@@ -21,7 +21,7 @@ continue_key = 'y'
 result_list = []
 goods_counter = 0
 while continue_key == 'y':
-    continue_key = (input('Добавить товар? y/n '))
+    continue_key = (input('Добавить новый товар? y/n '))
     if continue_key == 'n':
         break
     else:
@@ -35,13 +35,26 @@ while continue_key == 'y':
                         f'количество {goods_quantity} {goods_units}? y/n ')
         if confirm == 'y':
             goods_tuple = (goods_counter,{})
-            goods_tuple[1].update({'name': goods_name, 'price': goods_price, 'quantity': goods_quantity, 'units': goods_units})
+            goods_tuple[1].update({'name': goods_name, 'price': goods_price, 'quantity': goods_quantity,
+                                   'units': goods_units})
+            #  не знаю как ключи русскими сделать, и времени не осталось...  #  пофиксить когда нибудь
             result_list.append(goods_tuple)
             # print(goods_tuple)
             # print(goods_dict)
-            # print(result_list)
+            #print(result_list)
         else:
             goods_counter -= 1
             continue
-
-
+analyst_dict={}
+name_list=[]
+price_list=[]
+quantity_list=[]
+unit_list=[]
+if result_list:
+    for unit in range(len(result_list)):
+        name_list.append(result_list[unit][1].get('name'))
+        price_list.append(result_list[unit][1].get('price'))
+        quantity_list.append(result_list[unit][1].get('quantity'))
+        unit_list.append(result_list[unit][1].get('units'))
+    analyst_dict.update({'name': name_list, 'price': price_list,'quantity': quantity_list, 'units': unit_list})
+    print(analyst_dict)
