@@ -4,7 +4,6 @@
 
 my_func = lambda d_1, d_2, d_3: sum([d_1, d_2, d_3]) - min(d_1, d_2, d_3)
 
-
 d1 = float(input('введите число 1 '))
 d2 = float(input('введите число 2 '))
 d3 = float(input('введите число 3 '))
