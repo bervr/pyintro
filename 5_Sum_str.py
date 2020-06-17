@@ -29,6 +29,8 @@ def check_input(y):
             break
         elif 45 <= ord(i) <= 57 and ord(i) != 47:
             my_list.append(i)
+        # else:
+        #     return 0
     z = ''.join(my_list) if my_list != [''] else 0
     return z
 
@@ -41,10 +43,14 @@ def summarize(x):
     """
     if len(x) == 0:
         return 0
-    elif len(x) == 1:
+    elif len(x) == 1 and input_next:
         return float(check_input(x[0]))
     else:
-        return float(check_input(x[0])) + summarize(x[1:])
+        if input_next:
+            return float(check_input(x[0])) + summarize(x[1:])
+        else:
+            return 0
+
 
 
 print('Вводите числа через пробел, чтобы завершить - введите # ')
@@ -58,5 +64,5 @@ print('программа завершена')
 
 # про буквы явно было не сказано, поэтому не уверен что слова из букв и цифр,
 # например слово '7фисв' в примере функции check_input() надо было преобразовывать в 7,
-# а не отбрасывать, но что-то я и так закопался в этой задаче.
-# И да, рекурсивное сложение было перебором но уже сделал и жалко выбрасывать
+# а не отбрасывать, но если раскомментить последний if  в check_input() то будет отбрасывать.
+# И да, рекурсивное сложение было перебором, но уже сделал и жалко выбрасывать
