@@ -7,8 +7,18 @@
 
 base = abs(float(input('Введите основание степени - положительное число ')))
 exponent = int(float(input('Введите показатель степени - целое отрицательное число ')))
-print(base,exponent)
-exponent *= -1 if exponent > 0 else exponent
-print(base,exponent)
+exponent *= -1 if exponent > 0 else True
 my_func = lambda x, y: x ** y
 print(my_func(base, exponent))
+
+
+def my_func1(x,y):
+    """ Возводит основание x в отрицательную степень показателя -y"""
+    a = 1
+    for i in range(abs(y)):
+       a *= x
+    result = 1/a
+    return result
+
+
+print(my_func1(base,exponent))
