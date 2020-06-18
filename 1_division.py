@@ -13,7 +13,7 @@ def division_2(digit_1, digit_2):
     except ZeroDivisionError:
         return 'ZeroDivisionError'
     except TypeError:
-        return 'Не умею делить строки'
+        return 'Не умею делить строки, вводите числа цифрами'
     else:
         return round(quotient, 2)
 
