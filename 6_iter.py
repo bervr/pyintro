@@ -9,8 +9,8 @@
 import itertools
 
 try:
-    start_cooking = int(input('ВВедите цифрами с чего начать '))
-    stop_cooking_the_pot = int(input('ВВедите цифрами до сколькт считать '))
+    start_cooking = int(input('Введите цифрами с чего начать '))
+    stop_cooking_the_pot = int(input('Введите цифрами до скольки считать '))
 
     for el in itertools.count(start_cooking):
         if el > stop_cooking_the_pot:
@@ -21,3 +21,9 @@ except:
     print('Нас устроят только цифры')
 
 
+с = 0
+for el in itertools.cycle("Привет!"):
+    if с > stop_cooking_the_pot:
+        break
+    print(el)
+    с += 1
