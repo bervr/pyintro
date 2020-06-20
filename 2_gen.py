@@ -4,8 +4,5 @@
 # Результат: [12, 44, 4, 10, 78, 123].
    #         [2, 12, 44, 1, 1, 4, 10, 7, 1, 78, 123, 55]
 test_list = [300, 2, 12, 44, 1, 1, 4, 10, 7, 1, 78, 123, 55]
-my_list = test_list.copy()[1:]
+print([el for el in test_list[1:] if el > test_list.pop(0)])
 
-print([val for val in my_list.pop(0)])
-print([el for el in test_list if el < [val for val in my_list].pop(0)])
-#print([val for val in test_list[1:]])
