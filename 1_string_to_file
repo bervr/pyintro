@@ -4,4 +4,4 @@ my_string = 'start'
 while my_string != '':
     with open("strings.txt", "a", encoding='utf-8') as my_file:
         my_string = input('Напишите что вы думаете ')
-        print(my_string,file=my_file)
+        print(my_string, file=my_file)
