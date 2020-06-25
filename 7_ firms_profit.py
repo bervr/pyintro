@@ -9,5 +9,21 @@
 # Итоговый список сохранить в виде json-объекта в соответствующий файл.
 # Пример json-объекта:
 # [{"firm_1": 5000, "firm_2": 3000, "firm_3": 1000}, {"average_profit": 2000}]
-with open('text_7.txt','r',encoding='utf-8') as my_file:
-    for
+import json
+
+sum_profit = 0
+count_profit = 0
+result_dict = {}
+with open('text_7.txt', 'r', encoding='utf-8') as my_file:
+    for string in my_file:
+        string = string.split()
+        profit = int(string[2]) - int(string[3])
+        if profit > 0:
+            sum_profit += profit
+            count_profit += 1
+        result_dict.update({string[0]: profit})
+average_profit = sum_profit / count_profit if count_profit > 0 else 'Все в минусе'
+result_list = [result_dict, {"average_profit": average_profit}]
+#  print(result_list)
+with open('text_7.json', 'w', encoding='utf-8') as new_file:
+    json.dump(result_list, new_file, indent=2, ensure_ascii=False)
