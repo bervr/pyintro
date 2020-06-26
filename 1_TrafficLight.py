@@ -8,15 +8,19 @@
 import time
 from termcolor import colored, cprint
 import colorama
+
 colorama.init()
+
 
 class TrafficLight:
     color = 'yellow'
+
     def __running(self):
         def print_light(x, wait_time):
             cprint(f'цвет {x}, секунд - {wait_time}', x, end='')
             time.sleep(wait_time)
             print('\r', end='')
+
         while True:
             self.color = 'red'
             print_light(self.color, 7)
