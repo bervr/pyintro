@@ -11,20 +11,20 @@ import colorama
 colorama.init()
 
 class TrafficLight:
-    color = ''
+    color = 'yellow'
     def __running(self):
-        def print_light(x):
-            cprint(f'цвет {x}', x)
+        def print_light(x, wait_time):
+            cprint(f'цвет {x}, секунд - {wait_time}', x, end='')
+            time.sleep(wait_time)
+            print('\r', end='')
         while True:
             self.color = 'red'
-            print_light(self.color)
-            time.sleep(7)
+            print_light(self.color, 7)
             self.color = 'yellow'
-            print_light(self.color)
-            time.sleep(2)
+            print_light(self.color, 2)
             self.color = 'green'
-            print_light(self.color)
-            time.sleep(7)
+            print_light(self.color, 7)
+
 
 traffic_light = TrafficLight()
 traffic_light._TrafficLight__running()
