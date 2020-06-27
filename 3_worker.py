@@ -7,17 +7,17 @@
 # создать экземпляры класса Position, передать данные, проверить значения атрибутов, вызвать методы экземпляров)
 
 class Worker:
-    _income = {"wage": 0, "bonus": 0}
 
-    def __init__(self, name, surname, position):
+
+    def __init__(self, name, surname, position, wage, bonus):
         self.name = name
         self.surname = surname
         self.position = position
-
+        self._income = {"wage": wage, "bonus": bonus}
 
 class Position(Worker):
     def __init__(self, name, surname, position, wage, bonus):
-        super().__init__(name, surname, position)
+        super().__init__(name, surname, position, wage, bonus)
         self._income.update({"wage": wage, "bonus": bonus})
 
     def get_full_name(self):

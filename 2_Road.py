@@ -5,10 +5,8 @@
 # толщиной в 1 см * чи сло см толщины полотна. Проверить работу метода.
 # Например: 20м * 5000м * 25кг * 5см = 12500 т
 class Road:
-    length = ''
-    width = ''
 
-    def __init__(self, length, width):
+    def __init__(self, length=1, width=1):
         self._length = length
         self._width = width
         self.calculate()
