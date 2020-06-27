@@ -19,7 +19,7 @@ class Car:
         print(f'{self.name} остановилась!')
 
     def turn(self, direction):
-        print(f'{self.name} повернула на {direction}')
+        print(f'{self.name} повернула {direction}')
 
     def show_speed(self):
         print(f'Текущая вкорость {self.name} - {self.speed} км/ч')
@@ -34,7 +34,7 @@ class TownCar(Car):
         if self.speed < 60:
             print(f'Текущая вкорость {self.name} - {self.speed} км/ч')
         else:
-            print(f'{self.name}! Превышение на {60 - self.speed} км/ч!')
+            print(f'{self.name}! Превышение на {self.speed -60} км/ч!')
 
 
 class SportCar(Car):
@@ -51,7 +51,7 @@ class WorkCar(Car):
         if self.speed < 40:
             print(f'Текущая вкорость {self.name} - {self.speed} км/ч')
         else:
-            print(f'{self.name}! Превышение на {40 - self.speed} км/ч!')
+            print(f'{self.name}! Превышение на {self.speed - 40} км/ч!')
 
 
 class PoliceCar(Car):
@@ -59,14 +59,16 @@ class PoliceCar(Car):
         super().__init__(speed, color, name)
         self.is_police = True
 
-police_203 = PoliceCar(90, 'black with white line' , 'NYPD 203')
-work_1 = WorkCar(30, 'strange, maybe was red' , 'Kamaz')
+
+police_203 = PoliceCar(0, 'black with white line', 'NYPD 203')
+work_1 = WorkCar(30, 'strange, maybe was red', 'Kamaz')
 sport_1 = SportCar(450, 'blue', 'F1 McLauren')
-town_1 = TownCar (50, 'metalyc white', 'lasto4ka')
+town_1 = TownCar(50, 'metalyc white', 'lasto4ka')
 
 police_203.show_speed()
 work_1.show_speed(41)
 sport_1.show_speed()
+police_203.go()
 town_1.show_speed(70)
 sport_1.turn("направо")
 police_203.turn('за ней')
