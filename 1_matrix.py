@@ -9,7 +9,27 @@
 # складываем с первым элементом первой строки второй матрицы и т.д.
 
 class Matrix:
-    def __init__(self):
-        pass
-    def __str__():
-        pass
+    def __init__(self, income_list):
+        self.list = income_list
+
+    def __add__(self, other):
+        new_matrix = []
+        for i in range(len(self.list)):
+            new_list = []
+            for j in range(len(self.list[i])):
+                new_list.append(self.list[i][j] + other.list[i][j])
+            new_matrix.append(new_list)
+        return Matrix(new_matrix)
+
+    def __str__(self):
+        my_str = ''
+        for my_list in self.list:
+            my_str += '  '.join(map(str, my_list)) + '\n'
+        return my_str
+
+
+m_1 = Matrix([[11, 22, 33], [2, 4, 8], [-5, 99, 5.3]])
+m_2 = Matrix([[9, 8, 7], [6, 4, 0], [5, -99, -5.3]])
+print(m_1)
+print(m_2)
+print(m_1 + m_2)
