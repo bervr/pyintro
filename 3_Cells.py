@@ -23,6 +23,9 @@
 class Cell:
     def __init__(self, count):
         self.count = count
+        if self.count <= 0:
+            print('Не  бывает таких клеток')
+            raise Exception
 
     def __add__(self, other):
         return Cell(self.count + other.count)
@@ -40,7 +43,7 @@ class Cell:
     def __truediv__(self, other):
         return Cell(round(self.count / other.count))
 
-    def make_order(self, in_row=2):
+    def make_order(self, in_row=5):
         self.in_row = in_row
         print((('*' * self.in_row) + '\n') * (self.count // self.in_row) + '*' * (self.count % self.in_row))
 
@@ -51,6 +54,7 @@ class Cell:
 cell_1 = Cell(5)
 cell_2 = Cell(2)
 cell_3 = Cell(7)
+# cell_4 = Cell(0)
 
 print(cell_3 + cell_1)
 print(cell_1 - cell_3)
@@ -58,4 +62,4 @@ print(cell_3 - cell_2)
 print(cell_3 * cell_1)
 (cell_3 * cell_1).make_order(11)
 print(cell_3 / cell_1)
-cell_3.make_order(5)
+cell_3.make_order()
