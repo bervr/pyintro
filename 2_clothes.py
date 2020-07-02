@@ -17,26 +17,19 @@ class Clothes(ABC):
     def calculate_textile(self):
         pass
 
+
 class Suite(Clothes):
     def calculate_textile(self):
-        return self.size * 2 + 0.3
+        return round(self.size * 2 + 0.3)
 
-    # @property
-    # def __str__(self):
-    #     return f'{self.textile}'
 
 class Coat(Clothes):
+    @property
     def calculate_textile(self):
-        return self.size / 6.5 + 0.5
-    #
-    # @property
-    # def __str__(self):
-    #     return f'{self.textile}'
+        return round(self.size / 6.5 + 0.5)
 
 
-suite_1= Suite(56)
+suite_1 = Suite(56)
 coat_1 = Coat(190)
 print(suite_1.calculate_textile())
-print(coat_1.calculate_textile())
-
-
+print(coat_1.calculate_textile)
