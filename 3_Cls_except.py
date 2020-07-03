@@ -12,3 +12,65 @@
 class OwnError(Exception):
     def __init__(self, txt):
         self.txt = txt
+
+
+
+    #######################################################################
+
+    def check_input(y):
+        """
+        проверяет  строку (y) на число и символ # и возвращает число до # в виде числовой строки типа str ,
+        или поднимает глобальный флаг остановить ввод если получен символ #. если получены символы кроме 0-9.#  возвращает 0
+        :param y: -12.03
+        :return: -12.03
+        :param y: 12#36
+        :return: 12
+        :param y: 779
+        :return: 779
+        :param y: фисв
+        :return: 0
+        :param y: 7фисв
+        :return: 7
+        """
+        my_list = ['']
+        global input_next
+        for i in y:
+            if ord(i) == 35:
+                input_next = False
+                break
+            elif 45 <= ord(i) <= 57 and ord(i) != 47:
+                my_list.append(i)
+            # else:
+            #     return 0
+        z = ''.join(my_list) if my_list != [''] else 0
+        return z
+
+    def summarize(x):
+        """
+        Рекурсивно суммирует числа их списка x
+        :param x:[12, -5, 1.02]
+        :return: 8.02
+        """
+        if len(x) == 0:
+            return 0
+        elif len(x) == 1 and input_next:
+            return float(check_input(x[0]))
+        else:
+            if input_next:
+                return float(check_input(x[0])) + summarize(x[1:])
+            else:
+                return 0
+
+    print('Вводите числа через пробел, чтобы завершить - введите # ')
+    user_sum = 0
+    input_next = True
+    while input_next:
+        user_string = input().split()
+        user_sum += summarize(user_string)
+        print(user_sum)
+    print('программа завершена')
+
+    # про буквы явно было не сказано, поэтому не уверен что слова из букв и цифр,
+    # например слово '7фисв' в примере функции check_input() надо было преобразовывать в 7,
+    # а не отбрасывать, но если раскомментить последний if  в check_input() то будет отбрасывать.
+    # И да, рекурсивное сложение было перебором, но уже сделал и жалко выбрасывать
