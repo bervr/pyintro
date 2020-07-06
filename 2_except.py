@@ -9,7 +9,7 @@ class OwnError(Exception):
         self.txt = txt
 
 
-my_numbers = input('Введите через пробед что на что поделить ')
+my_numbers = input('Введите через пробел что на что поделить ')
 
 try:
     my_list = list(map(int, my_numbers.split()))
