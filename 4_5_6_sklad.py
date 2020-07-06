@@ -33,30 +33,30 @@ class Equipment(Warehouse):
 
 
 class Printer(Equipment):
-    def __init__(self, model, storage_units_per_one=2, eq_uid='auto'):
+    def __init__(self, model, storage_units_per_one=2, eq_uid=0):
         super().__init__(model, storage_units_per_one, eq_uid)
         self.eq_type = 'printer'
 
 
 class Computer(Equipment):
-    def __init__(self, model, storage_units_per_one=4, eq_uid='auto'):
-        super().__init__(eq_uid, model, storage_units_per_one)
+    def __init__(self, model, storage_units_per_one=4, eq_uid=0):
+        super().__init__(model, storage_units_per_one, eq_uid)
         self.eq_type = 'Computer'
 
 
 class Phone(Equipment):
-    def __init__(self, model, storage_units_per_one=1, eq_uid='auto'):
-        super().__init__(eq_uid, model, storage_units_per_one)
+    def __init__(self, model, storage_units_per_one=1, eq_uid=0):
+        super().__init__(model, storage_units_per_one, eq_uid)
         self.eq_type = 'IP phone'
 
 
 noname_1 = Equipment()
-printer_1 = Printer('hp3310', 1, 133)
+printer_1 = Printer('hp3310', 1)
 phone_1 = Phone('Cisco2950')
 comp_1 = Computer('Dell')
 
 print(Warehouse().total_storage_units_count)
 print(printer_1.model, printer_1.eq_uid)
-print(noname_1.model)
-print(comp_1.model)
-print(phone_1.model)
+print(noname_1.model, noname_1.eq_uid)
+print(comp_1.model, comp_1.eq_uid)
+print(phone_1.model, phone_1.eq_uid)
