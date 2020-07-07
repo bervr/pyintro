@@ -6,12 +6,36 @@
 # определенное подразделение компании. Для хранения данных о наименовании и количестве единиц оргтехники,
 # а также других данных, можно использовать любую подходящую структуру, например словарь.
 # 6. Продолжить работу над вторым заданием. Реализуйте механизм валидации вводимых пользователем данных.
-# Например, для указания количества принтеров, отправленных на склад, нельзя использовать строковый тип данных.
-# Подсказка: постарайтесь по возможности реализовать в проекте «Склад оргтехники» максимум возможностей,
-# изученных на уроках по ООП.
+# # Например, для указания количества принтеров, отправленных на склад, нельзя использовать строковый тип данных.
+# # Подсказка: постарайтесь по возможности реализовать в проекте «Склад оргтехники» максимум возможностей,
+# # изученных на уроках по ООП.
 class Warehouse:
     total_storage_units_count = 30
     account_number_counter = 0
+    all_units = {}
+
+    @staticmethod
+    def check_storage():
+        for el in Warehouse.all_units.keys():
+            print(f'SCU № {el:05} содержится {Warehouse.all_units.get(el)}')
+
+    @staticmethod
+    def move_equipment(eq_type, dept):
+        this_eq = Warehouse.all_units.get(Warehouse.get_one(eq_type))
+        eq_unit =''
+        for el in ['eq_type', 'model']:
+            eq_unit += f'{this_eq.get(el)} '
+        eq_number = Warehouse.get_one(eq_type)
+        Warehouse.all_units.update({eq_number: f"выдано в отдел {dept}"})
+        print(f'Оборудование  № {eq_number :05} {eq_unit} выдано в отдел {dept}')
+        Warehouse.total_storage_units_count += this_eq.get('storage SCU')
+
+
+
+    def get_one(eq_type):
+        for el in Warehouse.all_units.keys():
+            if Warehouse.all_units.get(el).get('eq_type') == eq_type:
+                return el
 
 
 class Equipment(Warehouse):
@@ -23,13 +47,21 @@ class Equipment(Warehouse):
             self.eq_uid = eq_uid
         self.eq_type = 'something'
         self.model = model
-        self.storage_units_per_one = storage_units_per_one
-        if Warehouse().total_storage_units_count > 0:
-            Warehouse.total_storage_units_count -= self.storage_units_per_one
-            # print(Warehouse().total_storage_units_count)
+        self.storage_scu = storage_units_per_one
+
+    def save_storage(self):
+        if Warehouse().total_storage_units_count > self.storage_scu:
+            Warehouse.total_storage_units_count -= self.storage_scu
+            Warehouse.all_units.update({self.eq_uid: self.my_obj()})
         else:
             print("Закончилось место на складе")
             del self
+
+
+
+
+    def my_obj(self):
+        return {'eq_type': self.eq_type, 'model': self.model, 'storage SCU': self.storage_scu}
 
 
 class Printer(Equipment):
@@ -50,13 +82,31 @@ class Phone(Equipment):
         self.eq_type = 'IP phone'
 
 
-noname_1 = Equipment()
+my_noname_1 = Equipment()
+my_noname_1.save_storage()
 printer_1 = Printer('hp3310', 1)
+printer_1.save_storage()
 phone_1 = Phone('Cisco2950')
+phone_1.save_storage()
 comp_1 = Computer('Dell')
+comp_1.save_storage()
+comp_4 = Computer('Aquarius', 'a', 333)
+comp_5 = Computer('Aquarius', 3, 'b')
+print(comp_4.eq_uid, comp_5.eq_uid)
+comp_2 = Computer('Aquarius')
+comp_2.save_storage()
+print(comp_1.my_obj())
+print(f'{Warehouse.all_units} - весь склад')
+print(f'{Warehouse().total_storage_units_count} осталось мест на складе')
+# print(printer_1.model, printer_1.eq_uid)
+# print(my_noname_1.model, my_noname_1.eq_uid)
+# print(comp_1.model, comp_1.eq_uid)
+# print(phone_1.model, phone_1.eq_type)
+Warehouse.check_storage()
+Warehouse.move_equipment('Computer', "IT")
 
-print(Warehouse().total_storage_units_count)
-print(printer_1.model, printer_1.eq_uid)
-print(noname_1.model, noname_1.eq_uid)
-print(comp_1.model, comp_1.eq_uid)
-print(phone_1.model, phone_1.eq_uid)
+comp_3 = Computer('HP')
+comp_3.save_storage()
+print(f'{Warehouse().total_storage_units_count} осталось мест на складе')
+
+print(f'{Warehouse.all_units} - весь склад')
