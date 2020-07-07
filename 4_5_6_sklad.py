@@ -45,10 +45,9 @@ class Warehouse:
 
 class Equipment(Warehouse, OwnError):
     def __init__(self, model='noname', storage_units_per_one=1, eq_uid=0):
+        #print(str(eq_uid).isdigit(), str(storage_units_per_one).isdigit()  )
         try:
-            if not str(eq_uid).isdigit and not str(storage_units_per_one).isdigit:
-                raise OwnError('какая-то беда с числами')
-            else:
+            if str(eq_uid).isdigit() and str(storage_units_per_one).isdigit():
                 if eq_uid == 0:
                     Warehouse.account_number_counter += 1
                     self.eq_uid = Warehouse.account_number_counter
@@ -57,10 +56,15 @@ class Equipment(Warehouse, OwnError):
                 self.eq_type = 'something'
                 self.model = model
                 self.storage_scu = storage_units_per_one
-                print(f'создан {self.eq_uid} {self.eq_type} {self.model}')
-        except OwnError:
-            print(OwnError)
-            del self
+                print(f'создан {self.eq_uid:05} {self.eq_type} {self.model}')
+            else:
+                print(f'не могу создать обьект {eq_uid} {storage_units_per_one}')
+                raise OwnError('какая-то беда с числами')
+
+        except OwnError as err:
+            print(err)
+            del Equipment().self
+
 
     def save_storage(self):
         if self.eq_uid in list(Warehouse.all_units.keys()):
@@ -107,19 +111,6 @@ comp_1.save_storage()
 
 comp_2 = Computer('Aquarius')
 comp_2.save_storage()
-print(comp_1.my_obj())
-print(f'{Warehouse.all_units} - весь склад')
-print(f'{Warehouse().total_storage_units_count} осталось мест на складе')
-# print(printer_1.model, printer_1.eq_uid)
-# print(my_noname_1.model, my_noname_1.eq_uid)
-# print(comp_1.model, comp_1.eq_uid)
-# print(phone_1.model, phone_1.eq_type)
-Warehouse.check_storage()
-Warehouse.move_equipment('Computer', "IT")
-print(f'{Warehouse().total_storage_units_count} осталось мест на складе')
-comp_2.save_storage()
-print(f'{Warehouse().total_storage_units_count} осталось мест на складе')
-
 comp_3 = Computer('HP')
 comp_3.save_storage()
 
@@ -129,6 +120,25 @@ comp_5 = Computer('fujimens', 3, 'b')
 comp_5.save_storage()
 
 print(comp_4.eq_uid, comp_5.eq_uid)
+
+
+
+
+#print(comp_1.my_obj())
+#print(f'{Warehouse.all_units} - весь склад')
 print(f'{Warehouse().total_storage_units_count} осталось мест на складе')
+# print(printer_1.model, printer_1.eq_uid)
+# print(my_noname_1.model, my_noname_1.eq_uid)
+# print(comp_1.model, comp_1.eq_uid)
+# print(phone_1.model, phone_1.eq_type)
+#Warehouse.check_storage()
+Warehouse.move_equipment('Computer', "IT")
+print(f'{Warehouse().total_storage_units_count} осталось мест на складе')
+comp_2.save_storage()
+print(f'{Warehouse().total_storage_units_count} осталось мест на складе')
+
+
+print(f'{Warehouse().total_storage_units_count} осталось мест на складе')
+
 
 print(f'{Warehouse.all_units} - весь склад')
